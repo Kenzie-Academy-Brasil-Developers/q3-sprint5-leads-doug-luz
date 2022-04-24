@@ -38,7 +38,7 @@ def retrieve():
     if not leads:
         return {'error':'There are not leads on database'}
 
-    return jsonify(leads), 200
+    return jsonify(leads), 404
 
 
 def update():
@@ -55,7 +55,7 @@ def update():
     
     lead = session.query(LeadModel).filter(LeadModel.email==email).first()
     if not lead:
-        return {'error':'Id not found'}
+        return {'error':'Id not found'},404
 
        
     lead.last_visit = datetime.now()
